@@ -192,18 +192,22 @@ if [ "$BUILD_TYPE" = "all" ]; then
     python3 ./tools/gen_tools_json.py -i "$IDF_PATH" -j "$AR_COMPS/arduino/package/package_esp32_index.template.json" -o "$AR_OUT/"
     if [ $? -ne 0 ]; then exit 1; fi
 fi
+echo "Done update package_esp32_index.template.json"
 
 # archive the build
 if [ "$BUILD_TYPE" = "all" ]; then
     ./tools/archive-build.sh
     if [ $? -ne 0 ]; then exit 1; fi
 fi
+echo "Done archive the build"
 
 # copy everything to arduino-esp32 installation
 if [ $COPY_OUT -eq 1 ] && [ -d "$ESP32_ARDUINO" ]; then
     ./tools/copy-to-arduino.sh
 fi
+echo "Done copy everything to arduino-esp32 installation"
 
 if [ $DEPLOY_OUT -eq 1 ]; then
     ./tools/push-to-arduino.sh
 fi
+echo "Done tools/push-to-arduino.sh"
