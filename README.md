@@ -12,3 +12,12 @@ git clone https://github.com/espressif/esp32-arduino-lib-builder
 cd esp32-arduino-lib-builder
 ./build.sh
 ```
+
+## For RAM usage reduction
+
+```
+# Enable dynamic buffer for mbedTLS
+CONFIG_MBEDTLS_DYNAMIC_BUFFER=y
+CONFIG_MBEDTLS_DYNAMIC_FREE_PEER_CERT=y
+CONFIG_MBEDTLS_DYNAMIC_FREE_CONFIG_DATA=y
+```
